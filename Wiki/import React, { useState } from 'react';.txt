@@ -1,0 +1,22 @@
+import React, { useState } from 'react';
+import SearchBar from './components/SearchBar';
+import RepoList from './components/RepoList';
+
+const App = () => {
+    const [repos, setRepos] = useState([]);
+
+    const handleSearch = async (query) => {
+        const fetchedRepos = await fetchRepos(query);
+        setRepos(fetchedRepos);
+    };
+
+    return (
+        <div>
+            <h1>GitHub Repo Wiki</h1>
+            <SearchBar onSearch={handleSearch} />
+            <RepoList repos={repos} />
+        </div>
+    );
+};
+
+export default App;
